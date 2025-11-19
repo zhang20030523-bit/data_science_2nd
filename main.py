@@ -57,23 +57,34 @@ st.markdown("""
     .stNumberInput > div > div > button {
         display: flex !important;
         visibility: visible !important;
-        opacity: 1 !important;
     }
     /* 确保输入框布局正确 */
     .stNumberInput {
         width: 100%;
     }
-    /* 确保spinner按钮在所有情况下都显示 */
-    button[aria-label*="increment"],
-    button[aria-label*="decrement"],
-    button[data-baseweb*="button"] {
+    /* 强制显示spinner按钮（增加和减少按钮） */
+    button[data-testid="stNumberInputStepUp"],
+    button[data-testid="stNumberInputStepDown"],
+    button[data-testid*="StepUp"],
+    button[data-testid*="StepDown"] {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+    /* 确保spinner按钮容器可见 */
+    div[data-baseweb="input"] button,
+    .stNumberInput button,
+    [data-baseweb="input"] button {
         display: inline-flex !important;
         visibility: visible !important;
         opacity: 1 !important;
     }
-    /* 确保number input的容器正确显示spinner */
-    div[data-baseweb="input"] button {
+    /* 确保number input的suffix区域显示 */
+    [data-baseweb="input"] > div:last-child,
+    .stNumberInput > div > div:last-child {
         display: flex !important;
+        visibility: visible !important;
     }
 </style>
 """, unsafe_allow_html=True)
