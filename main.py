@@ -385,7 +385,7 @@ if calculate_button:
     
 else:
     # 初始状态显示
-    st.info("👆 请在左侧边栏配置参数，然后点击"计算样本量"按钮开始计算")
+    st.info("👆 请在左侧边栏配置参数，然后点击「计算样本量」按钮开始计算")
     
     col1, col2, col3 = st.columns(3)
     
