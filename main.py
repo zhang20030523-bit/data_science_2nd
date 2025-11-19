@@ -53,6 +53,15 @@ st.markdown("""
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         margin: 10px 0;
     }
+    /* 确保number_input的spinner按钮显示 */
+    .stNumberInput > div > div > button {
+        display: flex !important;
+        visibility: visible !important;
+    }
+    /* 确保输入框布局正确 */
+    .stNumberInput {
+        width: 100%;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -192,26 +201,25 @@ with st.sidebar:
     
     # 实验组参数
     st.subheader("实验组参数")
-    col1, col2 = st.columns(2)
     
-    with col1:
-        k_value = st.number_input(
-            "K值",
-            min_value=0.1,
-            value=1.0,
-            step=0.1,
-            format="%.1f",
-            help="实验组与对照组的流量比例（默认1:1）"
-        )
+    k_value = st.number_input(
+        "K值",
+        min_value=0.1,
+        value=1.0,
+        step=0.1,
+        format="%.1f",
+        help="实验组与对照组的流量比例（默认1:1）",
+        key="k_value_input"
+    )
     
-    with col2:
-        group_num = st.number_input(
-            "实验组数量（不包括对照组）",
-            min_value=1,
-            value=2,
-            step=1,
-            help="实验组的数量，不包括对照组"
-        )
+    group_num = st.number_input(
+        "实验组数量（不包括对照组）",
+        min_value=1,
+        value=2,
+        step=1,
+        help="实验组的数量，不包括对照组",
+        key="group_num_input"
+    )
     
     total_groups = 1 + group_num
     st.info(f"将创建 1 个对照组 + {group_num} 个实验组 = {total_groups} 个组别")
@@ -220,55 +228,53 @@ with st.sidebar:
     
     # 流量参数
     st.subheader("流量参数")
-    col1, col2 = st.columns(2)
     
-    with col1:
-        daily_traffic = st.number_input(
-            "日活流量",
-            min_value=1,
-            value=10000,
-            step=1,
-            help="每日活跃用户数量"
-        )
+    daily_traffic = st.number_input(
+        "日活流量",
+        min_value=1,
+        value=10000,
+        step=1,
+        help="每日活跃用户数量",
+        key="daily_traffic_input"
+    )
     
-    with col2:
-        traffic_ratio = st.number_input(
-            "实验流量比例",
-            min_value=0.0,
-            max_value=1.0,
-            value=0.5,
-            step=0.1,
-            format="%.1f",
-            help="参与实验的流量占总流量的比例（0-1之间）"
-        )
+    traffic_ratio = st.number_input(
+        "实验流量比例",
+        min_value=0.0,
+        max_value=1.0,
+        value=0.5,
+        step=0.1,
+        format="%.1f",
+        help="参与实验的流量占总流量的比例（0-1之间）",
+        key="traffic_ratio_input"
+    )
     
     st.divider()
     
     # 统计参数
     st.subheader("统计参数")
-    col1, col2 = st.columns(2)
     
-    with col1:
-        significance_level = st.number_input(
-            "显著性水平（α）",
-            min_value=0.0,
-            max_value=1.0,
-            value=0.05,
-            step=0.01,
-            format="%.2f",
-            help="第一类错误率，通常为0.05（5%）"
-        )
+    significance_level = st.number_input(
+        "显著性水平（α）",
+        min_value=0.0,
+        max_value=1.0,
+        value=0.05,
+        step=0.01,
+        format="%.2f",
+        help="第一类错误率，通常为0.05（5%）",
+        key="significance_level_input"
+    )
     
-    with col2:
-        power = st.number_input(
-            "统计功效（1-β）",
-            min_value=0.0,
-            max_value=1.0,
-            value=0.8,
-            step=0.1,
-            format="%.1f",
-            help="检测到真实效应的概率，通常为0.8（80%）"
-        )
+    power = st.number_input(
+        "统计功效（1-β）",
+        min_value=0.0,
+        max_value=1.0,
+        value=0.8,
+        step=0.1,
+        format="%.1f",
+        help="检测到真实效应的概率，通常为0.8（80%）",
+        key="power_input"
+    )
     
     st.divider()
     
