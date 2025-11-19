@@ -190,29 +190,26 @@ with st.sidebar:
     
     # MDE参数
     st.subheader("MDE参数")
-    col1, col2 = st.columns(2)
     
-    with col1:
-        mde_start = st.number_input(
-            "MDE开始值 *",
-            min_value=0.0,
-            value=0.001,
-            step=0.001,
-            format="%.6f",
-            help="最小可检测效应的起始值（如：0.001表示0.1%）",
-            key="mde_start_input"
-        )
+    mde_start = st.number_input(
+        "MDE开始值 *",
+        min_value=0.0,
+        value=0.001,
+        step=0.001,
+        format="%.6f",
+        help="最小可检测效应的起始值（如：0.001表示0.1%）",
+        key="mde_start_input"
+    )
     
-    with col2:
-        mde_end = st.number_input(
-            "MDE结束值 *",
-            min_value=0.0,
-            value=0.01,
-            step=0.01,
-            format="%.6f",
-            help="最小可检测效应的结束值（如：0.01表示1%）",
-            key="mde_end_input"
-        )
+    mde_end = st.number_input(
+        "MDE结束值 *",
+        min_value=0.0,
+        value=0.01,
+        step=0.01,
+        format="%.6f",
+        help="最小可检测效应的结束值（如：0.01表示1%）",
+        key="mde_end_input"
+    )
     
     mde_step = st.number_input(
         "MDE步长 *",
