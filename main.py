@@ -57,10 +57,23 @@ st.markdown("""
     .stNumberInput > div > div > button {
         display: flex !important;
         visibility: visible !important;
+        opacity: 1 !important;
     }
     /* 确保输入框布局正确 */
     .stNumberInput {
         width: 100%;
+    }
+    /* 确保spinner按钮在所有情况下都显示 */
+    button[aria-label*="increment"],
+    button[aria-label*="decrement"],
+    button[data-baseweb*="button"] {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    /* 确保number input的容器正确显示spinner */
+    div[data-baseweb="input"] button {
+        display: flex !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -175,7 +188,8 @@ with st.sidebar:
             value=0.001,
             step=0.001,
             format="%.6f",
-            help="最小可检测效应的起始值（如：0.001表示0.1%）"
+            help="最小可检测效应的起始值（如：0.001表示0.1%）",
+            key="mde_start_input"
         )
     
     with col2:
@@ -185,7 +199,8 @@ with st.sidebar:
             value=0.01,
             step=0.01,
             format="%.6f",
-            help="最小可检测效应的结束值（如：0.01表示1%）"
+            help="最小可检测效应的结束值（如：0.01表示1%）",
+            key="mde_end_input"
         )
     
     mde_step = st.number_input(
@@ -194,7 +209,8 @@ with st.sidebar:
         value=0.001,
         step=0.001,
         format="%.6f",
-        help="MDE值的递增步长（如：0.001表示每次增加0.1%）"
+        help="MDE值的递增步长（如：0.001表示每次增加0.1%）",
+        key="mde_step_input"
     )
     
     st.divider()
